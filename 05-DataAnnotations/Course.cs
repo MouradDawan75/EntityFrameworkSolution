@@ -24,7 +24,7 @@ namespace _05_DataAnnotations
         public List<Tag> Tags { get; set; } = new List<Tag>();
 
         //Course est la casse principale -> la clé de jointure doit être définie dans Cover
-        //Un course peut exister sans couverture
+        //Un course peut exister sans couverture ////////
         //Lien OneToOne avec la classe Cover
         //public Cover Cover { get; set; }
     }
