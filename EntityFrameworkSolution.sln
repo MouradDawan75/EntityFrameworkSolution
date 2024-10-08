@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04-Crud", "04-Crud\04-Crud.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05-DataAnnotations", "05-DataAnnotations\05-DataAnnotations.csproj", "{FF631278-769D-4345-B6E3-99375AD3A0BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06-FluentApi", "06-FluentApi\06-FluentApi.csproj", "{088B0E6D-5E72-4BAB-8B0B-9B4CBBF5E1CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{FF631278-769D-4345-B6E3-99375AD3A0BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF631278-769D-4345-B6E3-99375AD3A0BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF631278-769D-4345-B6E3-99375AD3A0BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{088B0E6D-5E72-4BAB-8B0B-9B4CBBF5E1CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{088B0E6D-5E72-4BAB-8B0B-9B4CBBF5E1CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{088B0E6D-5E72-4BAB-8B0B-9B4CBBF5E1CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{088B0E6D-5E72-4BAB-8B0B-9B4CBBF5E1CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

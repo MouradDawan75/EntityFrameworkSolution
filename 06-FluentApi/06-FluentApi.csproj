@@ -5,18 +5,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FF631278-769D-4345-B6E3-99375AD3A0BC}</ProjectGuid>
+    <ProjectGuid>{088B0E6D-5E72-4BAB-8B0B-9B4CBBF5E1CB}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>_05_DataAnnotations</RootNamespace>
-    <AssemblyName>05-DataAnnotations</AssemblyName>
+    <RootNamespace>_06_FluentApi</RootNamespace>
+    <AssemblyName>06-FluentApi</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Admin\Desktop\test\</PublishUrl>
+    <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -26,11 +25,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
-    <CreateDesktopShortcut>true</CreateDesktopShortcut>
-    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -51,21 +49,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignManifests>true</SignManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestCertificateThumbprint>F88D128574AA64C4F69F218D0D928D7397702375</ManifestCertificateThumbprint>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestKeyFile>05-DataAnnotations_TemporaryKey.pfx</ManifestKeyFile>
-  </PropertyGroup>
-  <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>2754574_male_man_person_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -90,46 +73,23 @@
     <Compile Include="Author.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="Cover.cs" />
-    <Compile Include="Migrations\202410080732539_InitialModel.cs" />
-    <Compile Include="Migrations\202410080732539_InitialModel.Designer.cs">
-      <DependentUpon>202410080732539_InitialModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202410080817394_OneToManyAuthorCourse.cs" />
-    <Compile Include="Migrations\202410080817394_OneToManyAuthorCourse.Designer.cs">
-      <DependentUpon>202410080817394_OneToManyAuthorCourse.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202410080831551_ManyToManyCourseTag.cs" />
-    <Compile Include="Migrations\202410080831551_ManyToManyCourseTag.Designer.cs">
-      <DependentUpon>202410080831551_ManyToManyCourseTag.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202410080842219_OneToOneCourseCover.cs" />
-    <Compile Include="Migrations\202410080842219_OneToOneCourseCover.Designer.cs">
-      <DependentUpon>202410080842219_OneToOneCourseCover.cs</DependentUpon>
+    <Compile Include="Migrations\202410081019403_InitialModel.cs" />
+    <Compile Include="Migrations\202410081019403_InitialModel.Designer.cs">
+      <DependentUpon>202410081019403_InitialModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tag.cs" />
-    <Compile Include="Utilisateur.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="05-DataAnnotations_TemporaryKey.pfx" />
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202410080732539_InitialModel.resx">
-      <DependentUpon>202410080732539_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202410080817394_OneToManyAuthorCourse.resx">
-      <DependentUpon>202410080817394_OneToManyAuthorCourse.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202410080831551_ManyToManyCourseTag.resx">
-      <DependentUpon>202410080831551_ManyToManyCourseTag.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202410080842219_OneToOneCourseCover.resx">
-      <DependentUpon>202410080842219_OneToOneCourseCover.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202410081019403_InitialModel.resx">
+      <DependentUpon>202410081019403_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -143,9 +103,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="2754574_male_man_person_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
