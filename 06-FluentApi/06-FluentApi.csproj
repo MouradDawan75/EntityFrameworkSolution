@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Author.cs" />
+    <Compile Include="AuthorCourse.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="Cover.cs" />
     <Compile Include="Migrations\202410081019403_InitialModel.cs" />
