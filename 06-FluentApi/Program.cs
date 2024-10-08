@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -50,7 +51,7 @@ namespace _06_FluentApi
 
             //Par défaut la relation One est chargement immédiat (EagerLoading)
 
-            var course1 = context.Courses.Find(1);
+            var course1 = context.Courses.Find(3);
 
             Console.WriteLine($"Course Name: {course1.Name}");
             Console.WriteLine($">>>Author name: {course1.Author.Name}");
@@ -177,7 +178,134 @@ namespace _06_FluentApi
                          from c in context.Courses
                          select new { AuthorName = c.Author, CourseName = c.Name };
 
+            Console.WriteLine(">>>>>>>>>>>>>>Chainage de méthodes:");
 
+            Console.WriteLine("********Restriction:");
+
+            var author1Courses = context.Courses.Where(c => c.AuthorId == 1).ToList();
+
+            Console.WriteLine("********OrderBy:");
+
+            var coursesOrdered = context.Courses.Where(c => c.AuthorId == 1).OrderByDescending(c => c.Name).ToList();
+
+            Console.WriteLine("********Projection:");
+
+            var result = context.Courses.Where(c => c.AuthorId == 1)
+                .Select(c => new { CourseName = c.Name, AuthorName = c.Author.Name });
+
+            Console.WriteLine("********GroupBy:");
+
+            var groupes = context.Courses.GroupBy(c => c.FullPrice);
+
+            Console.WriteLine("********Jointres:");
+
+            var jointure = context.Courses
+                .Join(context.Authors, c => c.AuthorId, a => a.Id, 
+                (course, author) => new { CourseName = course.Name, AuthorName = author.Name });
+
+            // Le cours le moins cher:
+            context.Courses.OrderBy(c => c.FullPrice).FirstOrDefault();
+
+            //Pagination: récupérer les 5 premiers cours
+            //context.Courses.Skip(0).Take(5).ToList();
+
+            //Prendre les 5 cours suivants
+            //context.Courses.Skip(5).Take(5).ToList();
+
+            Console.WriteLine(">>>>>>>>>>>> Suppression en cascade:");
+            //Suppression de Author id = 2
+            /*
+            var author2 = context.Authors.Find(2);
+            context.Authors.Remove(author2);
+            context.SaveChanges();
+            */
+
+
+
+            #endregion
+
+            #region Requêtes Sql natives
+
+            Console.WriteLine(">>>>> Requêtes SQL:");
+
+            Console.WriteLine("*** Requête sur une table (DbSet)");
+
+            Console.WriteLine("Id de l'auteur: ");
+            int id = Convert.ToInt32(Console.ReadLine());
+
+            var auth1 = context.Authors.SqlQuery("Select * From Authors Where id=@id", new SqlParameter("@id", id)).SingleOrDefault();
+            Console.WriteLine(auth1.Name);
+
+            Console.WriteLine("*** Requpete sur la base de données:");
+
+            var AllCourses = context.Database.SqlQuery<Course>("Select * from t_course");
+
+            foreach(var item in AllCourses)
+            {
+                Console.WriteLine(item.Name);
+            }
+
+            //Pour les opératios d'écriture en BD: Insert, Delete, Update
+
+            Console.WriteLine("Id de l'auteur à supprimer: ");
+
+            int id_to_delete = Convert.ToInt32(Console.ReadLine());
+            int resultat = context.Database.ExecuteSqlCommand("Delete From Authors where id=@id", new SqlParameter("@id", id_to_delete));
+
+            if(resultat > 0)
+            {
+                Console.WriteLine("Auteur supprimé.....");
+            }
+            else
+            {
+                Console.WriteLine("Auteur introuvable......");
+            }
+
+
+            #endregion
+
+            #region Transactions
+
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>> Transactions:");
+
+            //Par défaut le mode transactionnel est false -> autocommit = true
+            /*
+            try
+            {
+                context.Courses.Add(new Course { Name = "EF", AuthorId = 3 });
+                context.SaveChanges();
+                context.Courses.Add(new Course { Name = "Android", AuthorId = 4 });
+                context.SaveChanges();
+                context.Courses.Add(new Course { Name = "Python", AuthorId = 1000 });
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }*/
+
+            Console.WriteLine("Mode transactionnel manuel:");
+            var transaction = context.Database.BeginTransaction();
+
+            try
+            {
+                context.Courses.Add(new Course { Name = "Java", AuthorId = 3 });
+                context.SaveChanges();
+                context.Courses.Add(new Course { Name = "Spring", AuthorId = 4 });
+                context.SaveChanges();
+                context.Courses.Add(new Course { Name = "Adobe", AuthorId = 5 });
+                context.SaveChanges();
+
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                transaction.Rollback(); //annuler toutes les commandes sql du bloc try
+            }finally
+            {
+                transaction.Dispose();
+            }
 
 
             #endregion
